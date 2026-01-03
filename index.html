@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TikTok Downloader</title>
+</head>
+<body>
+  <h2>TikTok Downloader + Auto Compress</h2>
+
+  <input id="url" placeholder="Paste link TikTok" />
+  <button onclick="download()">Download</button>
+
+  <p id="status"></p>
+
+  <script>
+    async function download() {
+      const url = document.getElementById("url").value;
+      document.getElementById("status").innerText = "Processing...";
+
+      const res = await fetch("YOUR_FIREBASE_API_URL", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url })
+      });
+
+      const data = await res.json();
+      window.location.href = data.download;
+    }
+  </script>
+</body>
+</html>
